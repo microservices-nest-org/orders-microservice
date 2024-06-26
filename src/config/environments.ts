@@ -3,11 +3,15 @@ import * as joi from 'joi';
 
 interface IEnvsVars {
   PORT: number;
+  PRODUCTS_MICROSERVICE_HOST: string;
+  PRODUCTS_MICROSERVICE_PORT: number;
 }
 
 const envsSchema = joi
   .object<IEnvsVars>({
     PORT: joi.number().required(),
+    PRODUCTS_MICROSERVICE_HOST: joi.string().required(),
+    PRODUCTS_MICROSERVICE_PORT: joi.number().required(),
   })
   .unknown(true);
 
@@ -21,4 +25,6 @@ const envsVars: IEnvsVars = value;
 
 export const envs = {
   port: envsVars.PORT,
+  productMicroserviceHost: envsVars.PRODUCTS_MICROSERVICE_HOST,
+  productMicroservicePort: envsVars.PRODUCTS_MICROSERVICE_PORT,
 };
